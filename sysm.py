@@ -143,7 +143,7 @@ class Main:
         
             try:
                 output = check_output("wmic cpu get name", shell=True)
-                cpuName = output.decode().splitlines()[1].strip()  # Apparently the second line is where the cpu name is located?
+                cpuName = output.split()[1:7] 
                 return cpuName if cpuName else "Unknown CPU"
         
             except Exception:
@@ -168,18 +168,20 @@ class Main:
             
             try:
                 output = check_output("wmic path win32_VideoController get name", shell=True)
-                gpuName = output.decode().splitlines()[1].strip()  # also the second line here??????
-                return gpuName if gpuName else "Unknown GPU"
+                gpuName = output.split()[1:4]  
+                return gpuName if gpuName else "Unknown GPU"    
             
             except Exception:
                 return "Unknown GPU"
+            
+        
         
         elif system() == "Linux":
 
             try:
                 output = check_output("lspci | grep -i 3D", shell=True) #(previously VGA!) its the 3D Controller listed in lspci
 
-                gpuName = output.decode().strip().split(":")[2]  # here too lmao
+                gpuName = output.decode().strip().split(":")[2]  
 
                 if not(gpuName):
                     output = check_output("lspci | grep -i vga", shell=True)
