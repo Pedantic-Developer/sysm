@@ -135,6 +135,17 @@ class Main:
             except Exception:
                 return None
             
+        elif system() == "Windows":
+            try:
+                host = check_output("whoami", shell=True)
+                output = host.split()
+
+                return output
+            
+            except Exception:
+                return None
+            
+            
         return None
 
     def cpuName(self):
@@ -179,7 +190,7 @@ class Main:
         elif system() == "Linux":
 
             try:
-                output = check_output("lspci | grep -i 3D", shell=True) #(previously VGA!) its the 3D Controller listed in lspci
+                output = check_output("lspci | grep -i 3D", shell=True) #previously VGA! now its the 3D Controller listed in lspci
 
                 gpuName = output.decode().strip().split(":")[2]  
 
