@@ -1,7 +1,12 @@
 # sysm
 A simple system usage monitor made in python!
 
+![Screenshot](/screenshots/sysm.png)
+
+
 ## Download
+
+Make sure you have git installed:
 
 Clone into the directory:
 
@@ -9,6 +14,7 @@ Clone into the directory:
 git clone https://github.com/Pedantic-Developer/sysm
 ```
 
+If you dont have git installed, then download the .zip file from the repository.
 ## Prerequisites
 
 Make sure to install necessary libraries in order for sysm to work!
@@ -16,7 +22,7 @@ Make sure to install necessary libraries in order for sysm to work!
 ### For Windows
 
 ```cmd
-python -m pip istall requirements.txt
+python -m pip istall -r requirements.txt
 ```
 
 ### For Linux
@@ -39,4 +45,10 @@ python sysm.py
 
 ```bash
 python3 sysm.py
+```
+
+Make sure that you are within the same directory as the program!
+
+```bash
+cd directoryname
 ```
