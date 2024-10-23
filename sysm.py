@@ -154,7 +154,7 @@ class Main:
         
             try:
                 output = check_output("wmic cpu get name", shell=True)
-                cpuName = output.split()[1:7] 
+                cpuName = output.split()[1:10] 
                 return cpuName if cpuName else "Unknown CPU"
         
             except Exception:
@@ -179,7 +179,7 @@ class Main:
             
             try:
                 output = check_output("wmic path win32_VideoController get name", shell=True)
-                gpuName = output.split()[1:4]  
+                gpuName = output.split()[1:10]  
                 return gpuName if gpuName else "Unknown GPU"    
             
             except Exception:
@@ -196,12 +196,13 @@ class Main:
 
                 if not(gpuName):
                     output = check_output("lspci | grep -i vga", shell=True)
-                    gpuName = output.decode().strip().split(":")[1] # to check if you have integrated gpu
+                    gpuName = output.decode().strip().split(":")[2] # to check if you have integrated gpu
                      
                 return gpuName if gpuName else "Unknown GPU"
             
             except Exception:
-                return "Unknown GPU"
+                output = check_output("lspci | grep -i vga", shell=True)
+                gpuName = output.decode().strip().split(":")[2] 
             
         return "Unknown GPU"
 
